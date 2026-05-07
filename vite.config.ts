@@ -18,22 +18,19 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { cloudflare } from "@cloudflare/vite-plugin";
+
 
 export default defineConfig({
   plugins: [
     // TanStack Start — enables SSR, server functions, and file-based routing
-    tanstackStart({
-      server: { entry: "server" },
-    }),
+    tanstackStart(),
     // React plugin — enables JSX transform and Fast Refresh in dev
     react(),
     // Tailwind CSS v4 — JIT compilation via Vite plugin
     tailwindcss(),
     // Resolve @/ path aliases defined in tsconfig.json
     tsconfigPaths(),
-    // Cloudflare Workers deployment target (only active during build)
-    ...(process.env.NODE_ENV === "production" ? [cloudflare()] : []),
+
   ],
   // Dedupe React to prevent multiple instances in SSR bundle
   resolve: {
