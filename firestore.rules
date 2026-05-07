@@ -1,0 +1,37 @@
+rules_version = '2';
+
+// Firestore Security Rules for SEO Survey Platform
+// =================================================
+// These rules control who can read/write data in Firestore.
+//
+// CURRENT POLICY:
+// - Anonymous users CAN create survey responses (no auth required)
+// - Nobody can read, update, or delete survey responses from the client
+// - Admin access is via Firebase Console or Admin SDK only
+//
+// IMPORTANT: Deploy these rules to Firebase before testing submissions:
+//   npx firebase-tools deploy --only firestore:rules
+//
+// @see https://firebase.google.com/docs/firestore/security/get-started
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Survey responses — write-only from anonymous users
+    match /surveyResponses/{document=**} {
+      // Allow anyone to create a new survey response
+      allow create: if true;
+
+      // Block all reads — survey data is admin-only
+      allow read: if false;
+
+      // Block updates and deletes — responses are immutable
+      allow update, delete: if false;
+    }
+
+    // Default deny — all other collections are locked
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

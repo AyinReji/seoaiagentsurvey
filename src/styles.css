@@ -1,0 +1,217 @@
+/**
+ * Global Styles — Theme, Utilities, and Animations
+ * ===================================================
+ * This is the application's main stylesheet. It defines:
+ *
+ * 1. TAILWIND CSS v4 SETUP
+ *    - @import "tailwindcss" with source restriction
+ *    - tw-animate-css for animation utilities
+ *    - Custom dark variant (not currently used — app is dark-only)
+ *
+ * 2. DESIGN TOKENS (@theme inline)
+ *    - Border radius scale (sm through 3xl)
+ *    - Semantic color variables (background, foreground, primary, etc.)
+ *    - Tint colors for survey section theming
+ *    - Font family (Inter via Google Fonts)
+ *
+ * 3. COLOR SYSTEM
+ *    - Built entirely on oklch() for perceptually uniform colors
+ *    - Dark theme by default (background: oklch(0.05 0.012 270))
+ *    - Primary: blue-purple (oklch(0.72 0.18 255))
+ *    - Accent: purple (oklch(0.65 0.2 290))
+ *    - Section tints: blue, purple, cyan, orange
+ *
+ * 4. UTILITY CLASSES
+ *    - .glass        → Light glassmorphism with blur + border
+ *    - .glass-strong → Stronger glassmorphism for form cards
+ *    - .glow-blue    → Blue box-shadow glow
+ *    - .glow-soft    → Dual-tone blue+purple glow
+ *    - .text-balance → CSS text-wrap: balance
+ *
+ * 5. KEYFRAME ANIMATIONS
+ *    - @keyframes shoot       → Shooting star trajectory
+ *    - @keyframes drift       → Ambient blob floating
+ *    - @keyframes pulse-glow  → CTA button breathing glow
+ *    - .animate-pulse-glow    → Applied to "Start Survey" button
+ *    - .animate-drift         → Applied to background blobs
+ *
+ * @see src/components/CosmicBackground.tsx for animation usage
+ * @see src/routes/__root.tsx for font loading
+ */
+
+@import "tailwindcss";
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================================
+   DESIGN TOKENS — Tailwind CSS v4 theme configuration
+   Uses CSS custom properties mapped to Tailwind's token system.
+   ========================================================================= */
+
+@theme inline {
+  /* Border radius scale */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
+
+  /* Semantic color tokens — mapped from CSS custom properties */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Survey section tint colors */
+  --color-tint-blue: var(--tint-blue);
+  --color-tint-purple: var(--tint-purple);
+  --color-tint-cyan: var(--tint-cyan);
+  --color-tint-orange: var(--tint-orange);
+
+  /* Typography — Inter font family with system fallbacks */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* =========================================================================
+   CSS CUSTOM PROPERTIES — oklch color values
+   All colors use oklch() for perceptually uniform appearance.
+   oklch(lightness chroma hue / alpha)
+   ========================================================================= */
+
+:root {
+  --radius: 1rem;
+
+  /* Core surfaces */
+  --background: oklch(0.05 0.012 270);           /* Near-black with subtle blue */
+  --foreground: oklch(0.97 0.005 250);            /* Near-white */
+
+  /* Card surfaces (semi-transparent for glass effect) */
+  --card: oklch(0.09 0.015 265 / 0.55);
+  --card-foreground: oklch(0.97 0.005 250);
+
+  /* Popover surfaces */
+  --popover: oklch(0.07 0.015 270 / 0.85);
+  --popover-foreground: oklch(0.97 0.005 250);
+
+  /* Primary — blue-purple used for CTAs and active states */
+  --primary: oklch(0.72 0.18 255);
+  --primary-foreground: oklch(0.05 0.012 270);
+
+  /* Secondary — subtle dark surface */
+  --secondary: oklch(0.18 0.02 265);
+  --secondary-foreground: oklch(0.97 0.005 250);
+
+  /* Muted — used for helper text and disabled states */
+  --muted: oklch(0.15 0.015 265);
+  --muted-foreground: oklch(0.68 0.02 255);
+
+  /* Accent — purple, used for hover states */
+  --accent: oklch(0.65 0.2 290);
+  --accent-foreground: oklch(0.05 0.012 270);
+
+  /* Destructive — warm red for errors */
+  --destructive: oklch(0.65 0.22 25);
+
+  /* Borders and inputs */
+  --border: oklch(0.95 0.02 250 / 0.08);
+  --input: oklch(0.95 0.02 250 / 0.06);
+  --ring: oklch(0.72 0.18 255 / 0.5);
+
+  /* Survey section tint colors — each section has a unique hue */
+  --tint-blue: oklch(0.7 0.18 255);    /* Section 1: Profile */
+  --tint-purple: oklch(0.68 0.2 295);  /* Section 2: Problems */
+  --tint-cyan: oklch(0.78 0.14 210);   /* Section 3: AI Trust */
+  --tint-orange: oklch(0.76 0.17 55);  /* Section 4: Validation */
+}
+
+/* =========================================================================
+   BASE LAYER — Global element styles
+   ========================================================================= */
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background: var(--color-background); color: var(--color-foreground); }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* =========================================================================
+   UTILITY CLASSES — Glassmorphism and glow effects
+   ========================================================================= */
+
+/* Light glass effect — used for pills, buttons, footer */
+@utility glass {
+  background: linear-gradient(180deg, oklch(0.12 0.02 265 / 0.5), oklch(0.06 0.015 270 / 0.4));
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid oklch(0.95 0.02 250 / 0.08);
+}
+
+/* Strong glass effect — used for the main form card and progress bar */
+@utility glass-strong {
+  background: linear-gradient(180deg, oklch(0.14 0.02 265 / 0.7), oklch(0.07 0.015 270 / 0.6));
+  backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid oklch(0.95 0.02 250 / 0.1);
+}
+
+/* CSS text-wrap: balance — keeps text visually balanced */
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Blue glow — strong single-color shadow */
+@utility glow-blue {
+  box-shadow: 0 0 60px -10px oklch(0.7 0.18 255 / 0.5);
+}
+
+/* Soft dual glow — blue + purple combination */
+@utility glow-soft {
+  box-shadow: 0 0 80px -20px oklch(0.7 0.18 255 / 0.4), 0 0 30px -10px oklch(0.65 0.2 290 / 0.3);
+}
+
+/* =========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================= */
+
+/* Shooting star — diagonal line moving across the viewport */
+@keyframes shoot {
+  0% { transform: translate3d(0,0,0) rotate(var(--ang, -20deg)); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate3d(120vw, 60vh, 0) rotate(var(--ang, -20deg)); opacity: 0; }
+}
+
+/* Ambient drift — slow floating movement for background blobs */
+@keyframes drift {
+  0%,100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(40px,-30px,0); }
+}
+
+/* Pulse glow — breathing glow effect for the primary CTA button */
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 0 50px -10px oklch(0.72 0.18 255 / 0.55), 0 0 0 0 oklch(0.72 0.18 255 / 0.3); }
+  50% { box-shadow: 0 0 80px -8px oklch(0.72 0.18 255 / 0.7), 0 0 0 6px oklch(0.72 0.18 255 / 0); }
+}
+
+/* Animation utility classes */
+@utility animate-pulse-glow { animation: pulse-glow 3.5s ease-in-out infinite; }
+@utility animate-drift { animation: drift 18s ease-in-out infinite; }
