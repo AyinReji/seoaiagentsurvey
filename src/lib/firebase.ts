@@ -120,3 +120,6 @@ export function getDb(): Firestore {
   }
   return db;
 }
+
+console.log(import.meta.env.VITE_TEST);
+
