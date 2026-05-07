@@ -50,6 +50,8 @@ import { submitSurvey } from "@/lib/firestore";
 // ---------------------------------------------------------------------------
 
 export const Route = createFileRoute("/survey")({
+  ssr: false,
+
   head: () => ({
     meta: [
       { title: "Professional Survey — SEO · GEO · AEO Platform" },
@@ -207,6 +209,7 @@ function SurveyPage() {
 
       try {
         const data = methods.getValues();
+
         const result = await submitSurvey(data);
 
         if (result.ok) {

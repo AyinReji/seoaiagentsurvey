@@ -17,12 +17,12 @@
  * - The calling component displays error messages to the user
  *
  * @see src/types/survey.ts for type definitions
- * @see src/lib/firebase.client.ts for Firebase initialization
+ * @see src/lib/firebase.ts for Firebase initialization
  * @see src/server/server-email.ts for email notification
  */
 
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { getDb, isFirebaseConfigured, debugFirebaseEnv } from "./firebase.client";
+import { getDb, isFirebaseConfigured, debugFirebaseEnv } from "./firebase";
 import { sendEmailNotification } from "../server/server-email";
 import type { SurveyPayload, SurveyDocument } from "../types/survey";
 
