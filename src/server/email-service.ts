@@ -63,6 +63,8 @@ export function buildEmailHtml(data: NotifyRequest): string {
               </p>
               ${section("Profile & Workflow", [
     ["Role", doc.profile.role],
+    ["Location", doc.profile.location || "(not provided)"],
+    ["Agency Name", doc.profile.agencyName || "(not provided)"],
     ["Scale", doc.profile.scale],
     ["Tech Stack", doc.profile.stack],
     ["Experience", doc.profile.experience],

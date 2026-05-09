@@ -105,6 +105,8 @@ function structurePayload(raw: SurveyPayload): SurveyDocument {
 
     profile: {
       role: str("role"),
+      location: str("location"),
+      agencyName: str("agencyName"),
       scale: str("scale"),
       stack: arr("stack"),
       experience: str("experience"),

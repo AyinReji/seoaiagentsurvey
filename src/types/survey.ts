@@ -37,6 +37,8 @@ export interface SurveyDocument {
   profile: {
     role: string;
     scale: string;
+    location: string;
+    agencyName: string;
     stack: string[];
     experience: string;
     email: string;

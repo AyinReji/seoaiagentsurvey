@@ -101,6 +101,8 @@ const SECTIONS = [
     accent: "from-[oklch(0.78_0.16_255)] to-[oklch(0.62_0.18_265)]",
     fields: [
       { kind: "choice", name: "role", q: "What best describes you?", options: opt("SEO Agency", "Freelancer", "In-house Team", "SaaS Founder", "Developer", "Other") },
+      { kind: "text", name: "location", q: "Where are you based", optional: true, placeholder: "City, Country" },
+      { kind: "text", name: "agencyName", q: "Agency or Company name", optional: true, placeholder: "Your agency or Company name" },
       { kind: "choice", name: "scale", q: "How many websites or clients do you actively manage?", options: opt("1–5", "6–20", "21–50", "50+") },
       { kind: "choice", name: "stack", q: "Main CMS / frameworks you work with", multi: true, options: opt("WordPress", "Shopify", "Next.js", "Webflow", "Custom Stack", "Other") },
       { kind: "choice", name: "experience", q: "Experience level in SEO / GEO / AEO", options: opt("Beginner", "Intermediate", "Advanced", "Expert") },
@@ -440,7 +442,7 @@ function SurveyPage() {
         )}
       </div>
 
-      <Footer />
+      <Footer onContactClick={() => setContactOpen(true)} />
 
       {/* Contact modal overlay */}
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />

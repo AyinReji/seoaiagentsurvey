@@ -15,7 +15,11 @@
 
 import { Link } from "@tanstack/react-router";
 
-export function Footer() {
+type FooterProps = {
+  onContactClick?: () => void;
+};
+
+export function Footer({ onContactClick }: FooterProps) {
   const linkedinUrl = import.meta.env.VITE_LINKEDIN_URL || "https://www.linkedin.com/";
 
   return (
@@ -27,9 +31,13 @@ export function Footer() {
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {/* TODO: Create dedicated /privacy and /terms routes */}
-            <Link to="/" className="hover:text-foreground transition">Privacy</Link>
-            <Link to="/" className="hover:text-foreground transition">Terms</Link>
-            <a href="#" className="hover:text-foreground transition">Contact</a>
+
+            <button
+              onClick={onContactClick}
+              className="hover:text-foreground transition"
+            >
+              Contact
+            </button>
             {/* LinkedIn URL is configured via VITE_LINKEDIN_URL in .env */}
             <a href={linkedinUrl} target="_blank" rel="noreferrer" className="hover:text-foreground transition">LinkedIn</a>
           </div>

@@ -165,7 +165,7 @@ function Index() {
         </motion.div>
       </section>
 
-      <Footer />
+      <Footer onContactClick={() => setContactOpen(true)} />
 
       {/* Contact modal */}
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
