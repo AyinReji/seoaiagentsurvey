@@ -62,32 +62,33 @@ export function buildEmailHtml(data: NotifyRequest): string {
                 Document ID: <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;font-size:12px;">${docId}</code>
               </p>
               ${section("Profile & Workflow", [
-                ["Role", doc.profile.role],
-                ["Scale", doc.profile.scale],
-                ["Tech Stack", doc.profile.stack],
-                ["Experience", doc.profile.experience],
-                ["Email", doc.profile.email || "(not provided)"],
-                ["Name Suggestion", doc.profile.nameSuggestion || "(none)"],
-              ])}
+    ["Role", doc.profile.role],
+    ["Scale", doc.profile.scale],
+    ["Tech Stack", doc.profile.stack],
+    ["Experience", doc.profile.experience],
+    ["Email", doc.profile.email || "(not provided)"],
+    ["Name Suggestion", doc.profile.nameSuggestion || "(none)"],
+  ])}
               ${section("Current Problems", [
-                ["Tools Used", doc.workflow.tools],
-                ["Biggest Time Sink", doc.workflow.timeSink],
-                ["Audit Duration", doc.workflow.auditDuration],
-                ["Top Frustration", doc.workflow.frustration],
-              ])}
+    ["Tools Used", doc.workflow.tools],
+    ["Biggest Time Sink", doc.workflow.timeSink],
+    ["Audit Duration", doc.workflow.auditDuration],
+    ["Top Frustration", doc.workflow.frustration],
+  ])}
               ${section("AI & Trust", [
-                ["Hardest Area", doc.aiTrust.hardestArea],
-                ["AI Usage", doc.aiTrust.aiUsage],
-                ["Trust Blockers", doc.aiTrust.trustBlocker],
-                ["Code Audit Value", doc.aiTrust.codeAudit],
-              ])}
+    ["Hardest Area", doc.aiTrust.hardestArea],
+    ["AI Usage", doc.aiTrust.aiUsage],
+    ["Trust Blockers", doc.aiTrust.trustBlocker],
+    ["Code Audit Value", doc.aiTrust.codeAudit],
+  ])}
               ${section("Product Validation", [
-                ["Unified Platform Value", doc.productValidation.unifiedValue],
-                ["Priority Features", doc.productValidation.features],
-                ["Willing to Pay", doc.productValidation.willingToPay],
-                ["Fix One Thing", doc.productValidation.fixOneThing || "(not provided)"],
-                ["Wishlist", doc.productValidation.wishlist || "(not provided)"],
-              ])}
+    ["Unified Platform Value", doc.productValidation.unifiedValue],
+    ["Priority Features", doc.productValidation.features],
+    ["Willing to Pay", doc.productValidation.willingToPay],
+    ["Fix One Thing", doc.productValidation.fixOneThing || "(not provided)"],
+    ["Wishlist", doc.productValidation.wishlist || "(not provided)"],
+    ["contributorContact", doc.productValidation.contributorContact || "(not provided)"],
+  ])}
             </div>
             <div style="padding:16px 32px;background:#f9fafb;border-top:1px solid #f0f0f0;">
               <p style="margin:0;color:#9ca3af;font-size:11px;">

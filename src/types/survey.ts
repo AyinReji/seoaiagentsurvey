@@ -66,6 +66,7 @@ export interface SurveyDocument {
     willingToPay: string;
     fixOneThing: string;
     wishlist: string;
+    contributorContact: string;
   };
 
   /** Metadata about the submission */

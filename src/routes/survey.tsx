@@ -142,7 +142,8 @@ const SECTIONS = [
       { kind: "choice", name: "features", q: "Which features would matter MOST to you?", multi: true, options: opt("AI-generated fixes", "Prioritized issues", "GEO optimization", "AEO / snippet suggestions", "White-label reports", "GitHub / ZIP code audits", "Real-time monitoring", "Competitor analysis") },
       { kind: "choice", name: "willingToPay", q: "Would you pay for an AI audit + developer-ready fixes delivered in under 2 minutes?", options: opt("Yes", "Maybe", "No") },
       { kind: "textarea", name: "fixOneThing", q: "If you could fix ONE thing about existing SEO tools, what would it be?", placeholder: "Share your honest take…" },
-      { kind: "textarea", name: "wishlist", q: "Any suggestions, opinions, or features you'd genuinely like to see?", placeholder: "Anything we missed…" },
+      { kind: "textarea", name: "wishlist", q: "Any suggestions, opinions, or features you'd genuinely like to see?", optional: true, placeholder: "Anything we missed…" },
+      { kind: "textarea", name: "contributorContact", q: "Would you like to contribute insights, collaborate, or connect with us?", optional: true, placeholder: "Leave your email, LinkedIn, WhatsApp, X/Twitter, or any preferred contact details. We'd love to connect with professionals interested in contributing ideas, feedback, or industry expertise.", },
     ],
   },
 ] as const;

@@ -132,6 +132,8 @@ function structurePayload(raw: SurveyPayload): SurveyDocument {
       willingToPay: str("willingToPay"),
       fixOneThing: str("fixOneThing"),
       wishlist: str("wishlist"),
+      contributorContact: str("contributorContact"),
+
     },
 
     metadata: {
