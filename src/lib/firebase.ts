@@ -38,17 +38,6 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// --- Runtime Env Debugging (Requested) ---
-if (import.meta.env.DEV) {
-  console.log("FULL ENV", import.meta.env);
-  console.log("FIREBASE ENV CHECK", {
-    apiKey: firebaseConfig.apiKey,
-    authDomain: firebaseConfig.authDomain,
-    projectId: firebaseConfig.projectId,
-  });
-}
-
-
 // ---------------------------------------------------------------------------
 // Runtime environment validation
 // ---------------------------------------------------------------------------
@@ -120,6 +109,3 @@ export function getDb(): Firestore {
   }
   return db;
 }
-
-console.log(import.meta.env.VITE_TEST);
-
