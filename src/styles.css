@@ -99,8 +99,10 @@
   --radius: 1rem;
 
   /* Core surfaces */
-  --background: oklch(0.05 0.012 270);           /* Near-black with subtle blue */
-  --foreground: oklch(0.97 0.005 250);            /* Near-white */
+  --background: oklch(0.05 0.012 270);
+  /* Near-black with subtle blue */
+  --foreground: oklch(0.97 0.005 250);
+  /* Near-white */
 
   /* Card surfaces (semi-transparent for glass effect) */
   --card: oklch(0.09 0.015 265 / 0.55);
@@ -135,10 +137,14 @@
   --ring: oklch(0.72 0.18 255 / 0.5);
 
   /* Survey section tint colors — each section has a unique hue */
-  --tint-blue: oklch(0.7 0.18 255);    /* Section 1: Profile */
-  --tint-purple: oklch(0.68 0.2 295);  /* Section 2: Problems */
-  --tint-cyan: oklch(0.78 0.14 210);   /* Section 3: AI Trust */
-  --tint-orange: oklch(0.76 0.17 55);  /* Section 4: Validation */
+  --tint-blue: oklch(0.7 0.18 255);
+  /* Section 1: Profile */
+  --tint-purple: oklch(0.68 0.2 295);
+  /* Section 2: Problems */
+  --tint-cyan: oklch(0.78 0.14 210);
+  /* Section 3: AI Trust */
+  --tint-orange: oklch(0.76 0.17 55);
+  /* Section 4: Validation */
 }
 
 /* =========================================================================
@@ -146,8 +152,16 @@
    ========================================================================= */
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html, body { background: var(--color-background); color: var(--color-foreground); }
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -195,23 +209,52 @@
 
 /* Shooting star — diagonal line moving across the viewport */
 @keyframes shoot {
-  0% { transform: translate3d(0,0,0) rotate(var(--ang, -20deg)); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translate3d(120vw, 60vh, 0) rotate(var(--ang, -20deg)); opacity: 0; }
+  0% {
+    transform: translate3d(0, 0, 0) rotate(var(--ang, -20deg));
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(120vw, 60vh, 0) rotate(var(--ang, -20deg));
+    opacity: 0;
+  }
 }
 
 /* Ambient drift — slow floating movement for background blobs */
 @keyframes drift {
-  0%,100% { transform: translate3d(0,0,0); }
-  50% { transform: translate3d(40px,-30px,0); }
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(40px, -30px, 0);
+  }
 }
 
 /* Pulse glow — breathing glow effect for the primary CTA button */
 @keyframes pulse-glow {
-  0%,100% { box-shadow: 0 0 50px -10px oklch(0.72 0.18 255 / 0.55), 0 0 0 0 oklch(0.72 0.18 255 / 0.3); }
-  50% { box-shadow: 0 0 80px -8px oklch(0.72 0.18 255 / 0.7), 0 0 0 6px oklch(0.72 0.18 255 / 0); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 50px -10px oklch(0.72 0.18 255 / 0.55), 0 0 0 0 oklch(0.72 0.18 255 / 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 80px -8px oklch(0.72 0.18 255 / 0.7), 0 0 0 6px oklch(0.72 0.18 255 / 0);
+  }
 }
 
 /* Animation utility classes */
-@utility animate-pulse-glow { animation: pulse-glow 3.5s ease-in-out infinite; }
-@utility animate-drift { animation: drift 18s ease-in-out infinite; }
+@utility animate-pulse-glow {
+  animation: pulse-glow 3.5s ease-in-out infinite;
+}
+
+@utility animate-drift {
+  animation: drift 18s ease-in-out infinite;
+}

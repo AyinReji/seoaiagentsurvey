@@ -1,11 +1,22 @@
 {
     "buildCommand": "npm run build",
-    "outputDirectory": ".output",
+    "outputDirectory": "dist/client",
     "framework": null,
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "/"
+            "destination": "/api/index"
+        }
+    ],
+    "headers": [
+        {
+            "source": "/assets/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
         }
     ]
 }
